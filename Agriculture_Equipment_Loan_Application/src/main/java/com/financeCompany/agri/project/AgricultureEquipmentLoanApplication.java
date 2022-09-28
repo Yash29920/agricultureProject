@@ -10,6 +10,7 @@ public class AgricultureEquipmentLoanApplication {
 		SpringApplication.run(AgricultureEquipmentLoanApplication.class, args);
 
         System.out.println("finance Api Started");
+        System.out.println("finance Api Running");
 	}
 
 }
