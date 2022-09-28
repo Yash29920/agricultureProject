@@ -8,6 +8,8 @@ public class AgricultureEquipmentLoanApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AgricultureEquipmentLoanApplication.class, args);
+
+        System.out.println("finance Api Started");
 	}
 
 }
