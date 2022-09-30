@@ -1,6 +1,7 @@
 package com.financeCompany.agri.project.appServiceImpl;
-
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.financeCompany.agri.project.appModel.EnquiryDetails;
+import com.financeCompany.agri.project.appModel.RegistrationDetails;
 import com.financeCompany.agri.project.appRepository.AppRepository;
 import com.financeCompany.agri.project.appService.AppService;
 
@@ -30,10 +32,6 @@ public class AppServiceImpl implements AppService
 		 throw new NullPointerException();	 
 	}
 		
-		
-		
-	
-
 	@Override
 	public ResponseEntity<Object> getAllEnquiry() 
 	{
@@ -45,6 +43,23 @@ public class AppServiceImpl implements AppService
 		else
 			return new ResponseEntity<Object>(findAll,HttpStatus.OK);
 	}
+
+	@Override
+	public ResponseEntity<Object> getSingleEnquiry(int enquiryid)
+	{
+		if(repository.existsById(enquiryid))
+	{	 EnquiryDetails enquiryDetails = repository.findById(enquiryid).get();
+	return new ResponseEntity<Object>(enquiryDetails,HttpStatus.OK);
+	}
+
+	else
+	{
+	throw new NoSuchElementException();
+	}
+	
+}
+
+	
 
 
 

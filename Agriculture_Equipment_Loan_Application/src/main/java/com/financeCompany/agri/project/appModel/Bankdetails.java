@@ -30,5 +30,4 @@ public class Bankdetails
 	@NotNull
 	private long conatctNo;
 
-
 }
