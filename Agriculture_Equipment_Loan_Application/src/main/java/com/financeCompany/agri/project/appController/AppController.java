@@ -1,6 +1,9 @@
 package com.financeCompany.agri.project.appController;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,26 +33,26 @@ public class AppController
 		
 	}
 	@PostMapping(value = "/addEnquiry",produces = {"application/json"})
-	@CrossOrigin("*")
 	public ResponseEntity<String> addEnquiry(@RequestBody EnquiryDetails enquiryDetails)
 	{
 		System.out.println(enquiryDetails);
-		return service.addEnquiry(enquiryDetails);
-		
+		String string = service.addEnquiry(enquiryDetails);
+		return new ResponseEntity<String>(string,HttpStatus.CREATED);
 		
 	}
 	@GetMapping(value = "/getAllEnquiry",produces = {"application/json"})
-	@CrossOrigin("*")
-	public ResponseEntity<Object> getAllEnquiry()
+	
+	public ResponseEntity<List<EnquiryDetails>> getAllEnquiry()
 	{
-		return service.getAllEnquiry();
-		
+		 List<EnquiryDetails> list = service.getAllEnquiry();
+		 return new ResponseEntity<List<EnquiryDetails>>(list,HttpStatus.OK);
 	}
+	
 	@GetMapping( value = "/getSingleEnquiry",produces = {"application/json"})
-	public ResponseEntity<Object> getSingleEnquiry(@PathVariable int enquiryid)
+	public Object getSingleEnquiry(@PathVariable int enquiryid)
 	{
-		service.getSingleEnquiry(enquiryid);
-		return null;
+		Object enq= service.getSingleEnquiry(enquiryid);
+		return new ResponseEntity<Object>(enq,HttpStatus.OK);
 		
 	}
 }

@@ -1,5 +1,7 @@
 package com.financeCompany.agri.project.appService;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 
 import com.financeCompany.agri.project.appModel.RegistrationDetails;
@@ -7,11 +9,11 @@ import com.financeCompany.agri.project.appModel.RegistrationDetails;
 public interface RegistrationService 
 {
 
- ResponseEntity<String> addRegistrationDetails(RegistrationDetails registrationDetails);
+ String addRegistrationDetails(RegistrationDetails registrationDetails);
 
- ResponseEntity<Object> getRegistrationDetails();
+ List<RegistrationDetails> getRegistrationDetails();
 
- ResponseEntity<Object> getSingleRegistration(int regcustomerid);
+ Object getSingleRegistration(int regcustomerid);
 	
 
 }
