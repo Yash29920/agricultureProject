@@ -10,9 +10,9 @@ import com.financeCompany.agri.project.appModel.RegistrationDetails;
 public interface AppService 
 {
 
-	ResponseEntity<String> addEnquiry(EnquiryDetails enquiryDetails);
+	public String addEnquiry(EnquiryDetails enquiryDetails);
 
-	ResponseEntity<Object> getAllEnquiry();
+	List<EnquiryDetails> getAllEnquiry();
 
-	ResponseEntity<Object> getSingleEnquiry(int enquiryid);
+	Object getSingleEnquiry(int enquiryid);
 }

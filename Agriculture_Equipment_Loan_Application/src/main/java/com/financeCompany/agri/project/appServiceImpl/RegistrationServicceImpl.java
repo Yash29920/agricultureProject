@@ -22,13 +22,13 @@ public class RegistrationServicceImpl implements RegistrationService
 	private RegistrationRepository regRepository;
 	
 	@Override
-	public ResponseEntity<String> addRegistrationDetails(RegistrationDetails registrationDetails)
+	public String addRegistrationDetails(RegistrationDetails registrationDetails)
 	{
-		regRepository.save(registrationDetails);
+		RegistrationDetails registrationDetails1 = regRepository.save(registrationDetails);
 		
-		if(registrationDetails.getRegcustomerid()!=0)
+		if(registrationDetails1.getRegcustomerid()!=0)
 		{
-			 return new ResponseEntity<String>("Added",HttpStatus.CREATED);
+			 return "Added";
 		} 
 		 throw new NullPointerException();
 		
@@ -36,7 +36,7 @@ public class RegistrationServicceImpl implements RegistrationService
 	}
 
 	@Override
-	public ResponseEntity<Object> getRegistrationDetails()
+	public List<RegistrationDetails> getRegistrationDetails()
 	{
 		List<RegistrationDetails> getAll = regRepository.findAll();
 
@@ -44,23 +44,19 @@ public class RegistrationServicceImpl implements RegistrationService
 			throw new NullPointerException();
 			
 		else
-			return new ResponseEntity<Object>(getAll,HttpStatus.OK);
+			return getAll;
 	}
 
 	@Override
-	public ResponseEntity<Object> getSingleRegistration(int regcustomerid) {
+	public Object getSingleRegistration(int regcustomerid) {
 		
 		if(regRepository.existsById(regcustomerid))
 		{	
 			RegistrationDetails registrationDetails = regRepository.findById(regcustomerid).get();
-			return new ResponseEntity<Object>(registrationDetails,HttpStatus.OK);
+			return registrationDetails;
 		}
 		else
-		{
-			throw new NoSuchElementException();
-		}
-		
-		
+			throw new NoSuchElementException();	
 	}
 }
 

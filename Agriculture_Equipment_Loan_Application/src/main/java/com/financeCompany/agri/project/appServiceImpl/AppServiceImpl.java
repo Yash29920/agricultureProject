@@ -22,18 +22,18 @@ public class AppServiceImpl implements AppService
 	
 	@Override
 	
-	public ResponseEntity<String> addEnquiry(EnquiryDetails enquiryDetails)
+	public String addEnquiry(EnquiryDetails enquiryDetails)
 	{
-		repository.save(enquiryDetails);
-		if(enquiryDetails.getUsername()!=null&&enquiryDetails.getPassword()!=null)
+		EnquiryDetails enquiryDetails1 = repository.save(enquiryDetails);
+		if(enquiryDetails1.getUsername()!=null&&enquiryDetails1.getPassword()!=null)
 		{
-			 return new ResponseEntity<String>("Added",HttpStatus.CREATED);
+			return "Added into DB"; 
 		} 
 		 throw new NullPointerException();	 
 	}
 		
 	@Override
-	public ResponseEntity<Object> getAllEnquiry() 
+	public List<EnquiryDetails> getAllEnquiry() 
 	{
 		List<EnquiryDetails> findAll = repository.findAll();
 		
@@ -41,22 +41,19 @@ public class AppServiceImpl implements AppService
 			throw new NullPointerException();
 			
 		else
-			return new ResponseEntity<Object>(findAll,HttpStatus.OK);
+			return findAll;
 	}
 
 	@Override
-	public ResponseEntity<Object> getSingleEnquiry(int enquiryid)
+	public Object getSingleEnquiry(int enquiryid)
 	{
 		if(repository.existsById(enquiryid))
 	{	 EnquiryDetails enquiryDetails = repository.findById(enquiryid).get();
-	return new ResponseEntity<Object>(enquiryDetails,HttpStatus.OK);
+			return enquiryDetails;
 	}
+		else 
+			throw new NoSuchElementException();
 
-	else
-	{
-	throw new NoSuchElementException();
-	}
-	
 }
 
 	

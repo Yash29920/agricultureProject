@@ -1,6 +1,9 @@
 package com.financeCompany.agri.project.appController;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,26 +33,26 @@ public class RegistrationController
 	}
 	
 	@PostMapping(value = "/addRegistrationDetails",produces = {"application/json"})
-	@CrossOrigin("*")
+	
 	public ResponseEntity<String> addRegistrationDetails(@RequestBody RegistrationDetails registrationDetails)
 	{
 		System.out.println(registrationDetails);
-	   	return service.addRegistrationDetails(registrationDetails);
-	
+	    String str = service.addRegistrationDetails(registrationDetails);
+		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
 	@GetMapping(value = "/getRegistrationDetails",produces ={"application/json"})
-	@CrossOrigin("*")
-	public ResponseEntity<Object> getRegistrationDetails()
+	
+	public ResponseEntity<List<RegistrationDetails>> getRegistrationDetails()
 	{
-		return service.getRegistrationDetails();
-		
+		 List<RegistrationDetails> registrationDetails = service.getRegistrationDetails();
+		 return new ResponseEntity<List<RegistrationDetails>>(registrationDetails,HttpStatus.OK);
 	}
 	@GetMapping(value = "/getSingleMapping/{regcustomerid}",produces ={"application/json"} )
-	@CrossOrigin("*")
+	
 	public ResponseEntity<Object> getSingleRegistration(@PathVariable int regcustomerid)
 	{
-		return service.getSingleRegistration(regcustomerid);
-		
+		 Object obj = service.getSingleRegistration(regcustomerid);
+		 return new ResponseEntity<Object>(obj,HttpStatus.OK);
 		
 	}
 	
