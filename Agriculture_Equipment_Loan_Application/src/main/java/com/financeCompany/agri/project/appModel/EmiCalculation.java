@@ -23,5 +23,8 @@ public class EmiCalculation {
 	private double monthlyEmi;
 	private double interest;
 	private double totalAmount;
+	private String rateOfInterest;
+	private double loanTenure;
+	private double requiredLoanAmount;
 	
 }
