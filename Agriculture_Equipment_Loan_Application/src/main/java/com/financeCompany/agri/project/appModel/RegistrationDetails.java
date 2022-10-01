@@ -43,7 +43,7 @@ public class RegistrationDetails
 	@NotNull
 	private String email;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private List<RegistraionAddress> regAddress;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -55,7 +55,7 @@ public class RegistrationDetails
 	@OneToOne(cascade = CascadeType.ALL)
 	private PreviousLoan previousLoan;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private List<GuarantorDetails> guarantorDetails;
 	
 	@OneToOne(cascade = CascadeType.ALL)

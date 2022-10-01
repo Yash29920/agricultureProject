@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CibilScoreCheck {
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int customerid;
