@@ -1,3 +1,4 @@
+
 package com.financeCompany.agri.project.appModel;
 
 import javax.persistence.Entity;

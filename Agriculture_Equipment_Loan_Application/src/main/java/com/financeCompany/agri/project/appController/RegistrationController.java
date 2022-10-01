@@ -33,13 +33,14 @@ public class RegistrationController
 	}
 	
 	@PostMapping(value = "/addRegistrationDetails",produces = {"application/json"})
-	
 	public ResponseEntity<String> addRegistrationDetails(@RequestBody RegistrationDetails registrationDetails)
-	{
+	   {
 		System.out.println(registrationDetails);
 	    String str = service.addRegistrationDetails(registrationDetails);
 		return new ResponseEntity<String>(str,HttpStatus.OK);
-	}
+	   }
+	
+	
 	@GetMapping(value = "/getRegistrationDetails",produces ={"application/json"})
 	
 	public ResponseEntity<List<RegistrationDetails>> getRegistrationDetails()
