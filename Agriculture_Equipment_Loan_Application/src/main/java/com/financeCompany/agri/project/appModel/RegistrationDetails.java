@@ -61,5 +61,8 @@ public class RegistrationDetails
 	@OneToOne(cascade = CascadeType.ALL)
 	private CustomerVerify customerVerify;
 	
-
+	@OneToOne(cascade = CascadeType.ALL)
+	private CibilScoreCheck cibilScoreCheck;
+	
+	
 }
