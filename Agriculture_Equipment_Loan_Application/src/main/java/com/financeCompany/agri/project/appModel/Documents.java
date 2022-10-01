@@ -1,6 +1,8 @@
 package com.financeCompany.agri.project.appModel;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.sun.istack.NotNull;
@@ -17,10 +19,11 @@ public class Documents
 {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int documentid;
 	@NotNull
 	private byte[] pancard;
-	@NotNull
+	
 	private byte[] incomeTaxReturn;
 	@NotNull
 	private byte[] aadharCard;

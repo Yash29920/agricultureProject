@@ -20,26 +20,31 @@ import lombok.NoArgsConstructor;
 public class GuarantorDetails
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private int gid;
 	@NotNull
-	private String gName; 
+	private String gName;
 	@NotNull
 	private Date gDateofBirth;
 	@NotNull
 	private String gRelationshipwithCustomer;
 	@NotNull
-	private long gMobNo;
+	private long gMobileNo;
 	@NotNull
-	private long gAdharCardNo;
+	private long gAadharCardNo;
 	@NotNull
-	private String gMortgageDetails;
+	private String gPancard;
 	@NotNull
 	private String gJobDetails;
 	@NotNull
-	private String glocallAddress;
+	private String gAddress;
 	@NotNull
-	private String gPermanentAddress;
-
+	private byte[] gSignature;
+	@NotNull
+	private byte[] gPhoto;
+	@NotNull
+	private byte[] gBankStatement;
+	
+	
 
 }

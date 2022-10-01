@@ -15,22 +15,18 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class PreviousEmiDetails
-{
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int emiId;
-	@NotNull
-	private double emiMonthlyAmount;
-	@NotNull
-	private Date nextEmiDueDate;
-	@NotNull
-	private double pendingLoanAmount;
-	@NotNull
-	private double totalLoanAmount;
+@AllArgsConstructor
+public class CustomerVerify {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int verificationid;
+	private Date verificationDate;
+	private String status;
+	private String remarks;
+	private String comment;
 	
 
+	
 }
