@@ -18,10 +18,17 @@ public class ExeceptionHandler
 		
 	}
 	@ExceptionHandler(NoSuchElementException.class)
-	public ResponseEntity<String> NoSuchElementException()
+	public ResponseEntity<String> noSuchElementException()
 	{
 		return new ResponseEntity<String>("Requested Element Do not Exist",HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<String> exception()
+	{
+		return new ResponseEntity<String>("Something Went Wrong",HttpStatus.BAD_REQUEST);
+	}
+	
 
 }

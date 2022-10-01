@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class RegistraionAddress
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
  	private int addressid;
 	@NotNull
  	private int houseNo;
@@ -33,7 +33,7 @@ public class RegistraionAddress
 	@NotNull
  	private String state;
 	@NotNull
- 	private String pincode;
+ 	private int pincode;
 
 
 }

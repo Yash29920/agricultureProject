@@ -1,11 +1,14 @@
 package com.financeCompany.agri.project.appModel;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.sun.istack.NotNull;
 
@@ -20,17 +23,17 @@ import lombok.NoArgsConstructor;
 public class EnquiryDetails 
 {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int enquiryid;
 	@NotNull
 	private String username;
 	@NotNull
 	private String password;
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int enquiryid;
 	@NotNull
 	private String firstName;
 	@NotNull
-	private String middelName;
+	private String middleName;
 	@NotNull
 	private String lastName;
 	@NotNull
@@ -44,7 +47,7 @@ public class EnquiryDetails
 	@NotNull
 	private long mobileNo;
 	@NotNull
-	private long pancardNo;
+	private String pancardNo;
 	@NotNull
 	private long aadharCardNo;
 	@NotNull
@@ -56,6 +59,10 @@ public class EnquiryDetails
 	@NotNull
     private String comment;
 
-
-
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<EmiCalculation> emiCalculation;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<SubsidyOffer> subsidyOffer;
+	
 }

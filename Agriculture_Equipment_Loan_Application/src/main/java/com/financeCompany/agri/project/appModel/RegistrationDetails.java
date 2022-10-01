@@ -1,12 +1,14 @@
 package com.financeCompany.agri.project.appModel;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.sun.istack.NotNull;
@@ -24,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class RegistrationDetails 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
     private int regcustomerid;
 	@NotNull
     private String regFirstName;
@@ -41,8 +43,8 @@ public class RegistrationDetails
 	@NotNull
 	private String email;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private RegistraionAddress regAddress;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<RegistraionAddress> regAddress;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Documents documents;
@@ -53,11 +55,11 @@ public class RegistrationDetails
 	@OneToOne(cascade = CascadeType.ALL)
 	private PreviousLoan previousLoan;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private GuarantorDetails guarantorDetails;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<GuarantorDetails> guarantorDetails;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private PreviousEmiDetails previousEmiDetails;
-
+	private CustomerVerify customerVerify;
+	
 
 }
