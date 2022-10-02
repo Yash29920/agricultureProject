@@ -28,6 +28,12 @@ public class RegistrationDetails
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private int regcustomerid;
+	
+	@NotNull
+    private String username;
+	@NotNull
+	private String password;
+	
 	@NotNull
     private String regFirstName;
 	@NotNull
@@ -42,9 +48,21 @@ public class RegistrationDetails
 	private long mobile;
 	@NotNull
 	private String email;
+	@NotNull
+	private String panNo;
+	
+	@NotNull
+    private String	equipmentName;
+	@NotNull
+	private double requiredLoanAmount;
+	@NotNull
+	private String equipmentDetails;
+	
+	
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private List<RegistraionAddress> regAddress;
+	private RegistraionAddress regAddress;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Documents documents;
@@ -56,13 +74,15 @@ public class RegistrationDetails
 	private PreviousLoan previousLoan;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private List<GuarantorDetails> guarantorDetails;
+	private GuarantorDetails guarantorDetails;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private CustomerVerify customerVerify;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private CibilScoreCheck cibilScoreCheck;
-	
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<EmiCalculation> emiCalculation;
 	
 }

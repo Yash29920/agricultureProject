@@ -22,6 +22,9 @@ public class CustomerVerify {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int verificationid;
+	
+	private int regcustomerid;
+	
 	private Date verificationDate;
 	private String status;
 	private String remarks;

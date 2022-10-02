@@ -89,8 +89,9 @@ public class OperationHeadServiceImpl implements OperationHeadService{
 
 
 	@Override
-	public void customerVerify(Integer regcustomerid, CustomerVerify customerVerify) {
+	public void customerVerify(CustomerVerify customerVerify) {
 		
+		int regcustomerid = customerVerify.getRegcustomerid();
 		RegistrationDetails registrationDetails = regRepository.findById(regcustomerid).get();
 		
 		 registrationDetails.setCustomerVerify(customerVerify);
