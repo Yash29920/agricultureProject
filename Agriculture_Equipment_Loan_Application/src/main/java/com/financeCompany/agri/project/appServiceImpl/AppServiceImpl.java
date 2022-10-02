@@ -25,7 +25,7 @@ public class AppServiceImpl implements AppService
 	public String addEnquiry(EnquiryDetails enquiryDetails)
 	{
 		EnquiryDetails enquiryDetails1 = repository.save(enquiryDetails);
-		if(enquiryDetails1.getUsername()!=null&&enquiryDetails1.getPassword()!=null)
+		if(enquiryDetails1.getMobileNo()!=0&&enquiryDetails1.getAadharCardNo()!=0)
 		{
 			return "Added into DB"; 
 		} 

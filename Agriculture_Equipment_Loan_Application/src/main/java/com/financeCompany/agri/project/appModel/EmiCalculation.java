@@ -21,6 +21,7 @@ public class EmiCalculation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int emiid;
+	private int regcustomerid;
 	private double monthlyEmi;
 	private double interest;
 	private double totalAmount;

@@ -48,8 +48,8 @@ public class RegistrationController
 		 List<RegistrationDetails> registrationDetails = service.getRegistrationDetails();
 		 return new ResponseEntity<List<RegistrationDetails>>(registrationDetails,HttpStatus.OK);
 	}
-	@GetMapping(value = "/getSingleMapping/{regcustomerid}",produces ={"application/json"} )
 	
+	@GetMapping(value = "/getSingleMapping/{regcustomerid}",produces ={"application/json"} )
 	public ResponseEntity<Object> getSingleRegistration(@PathVariable int regcustomerid)
 	{
 		 Object obj = service.getSingleRegistration(regcustomerid);

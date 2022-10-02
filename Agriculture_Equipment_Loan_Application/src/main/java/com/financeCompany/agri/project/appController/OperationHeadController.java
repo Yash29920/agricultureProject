@@ -59,11 +59,11 @@ public class OperationHeadController {
 	   return new ResponseEntity(HttpStatus.OK);
 	  }
 	
-	@PutMapping("/customerVerify/{regcustomerid}")
-	public ResponseEntity customerVerify(@PathVariable Integer regcustomerid, @RequestBody CustomerVerify customerVerify) 
+	@PutMapping("/customerVerify")
+	public ResponseEntity customerVerify(@RequestBody CustomerVerify customerVerify) 
 	  { 
 		  System.out.println(customerVerify); 
-		  ohservice.customerVerify(regcustomerid,customerVerify);
+		  ohservice.customerVerify(customerVerify);
 	   return new ResponseEntity(HttpStatus.OK);
 	  }
 

@@ -24,12 +24,14 @@ public class LoanRepresentativeController {
 	@Autowired
 	private LoanRepresentativeService lrservice;
 	
-	@PutMapping("/emiUpdate/{enquiryid}")
+	@PutMapping("/emiUpdate")
 	public ResponseEntity emiUpdate(@PathVariable Integer enquiryid, @RequestBody List<EmiCalculation>emiCalculation) 
 	  { 
 		  System.out.println(emiCalculation); 
 		  lrservice.emiUpdate(enquiryid,emiCalculation);
 	   return new ResponseEntity(HttpStatus.OK);
 	  }
+	
+	
 	
 }

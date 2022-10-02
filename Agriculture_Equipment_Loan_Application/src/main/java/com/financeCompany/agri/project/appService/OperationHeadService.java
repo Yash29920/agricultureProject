@@ -15,7 +15,7 @@ public interface OperationHeadService {
 	
 	void subsidyOffer(Integer enquiryid, List<SubsidyOffer> subsidyOffer);
 
-	void customerVerify(Integer regcustomerid, CustomerVerify customerVerify);
+	void customerVerify(CustomerVerify customerVerify);
 
 
 }

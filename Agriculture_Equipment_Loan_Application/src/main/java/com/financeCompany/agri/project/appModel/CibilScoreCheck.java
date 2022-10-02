@@ -18,7 +18,9 @@ public class CibilScoreCheck {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int customerid;
+	private int cibilid;
+	
+	private int regcustomerid;
 	
 	private String firstname;
 	private String lastName;
@@ -27,6 +29,9 @@ public class CibilScoreCheck {
 	private long phoneNo;
 	private String gender;
 	private int cibilscore;
+	private String status;
+	private String comment;
+	
 	
 	
 	

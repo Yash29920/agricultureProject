@@ -26,7 +26,7 @@ public class RegistrationServicceImpl implements RegistrationService
 	{
 		RegistrationDetails registrationDetails1 = regRepository.save(registrationDetails);
 		
-		if(registrationDetails1.getRegcustomerid()!=0)
+		if(registrationDetails1.getUsername()!=null)
 		{
 			 return "Added";
 		} 

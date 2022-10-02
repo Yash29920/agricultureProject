@@ -27,10 +27,6 @@ public class EnquiryDetails
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int enquiryid;
 	@NotNull
-	private String username;
-	@NotNull
-	private String password;
-	@NotNull
 	private String firstName;
 	@NotNull
 	private String middleName;
