@@ -22,19 +22,19 @@ public class Bankdetails
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bankid;
 	
-	@NotNull
+	
     private long bankaccountno;
-	@NotNull
+
     private String bankName;
-	@NotNull
+	
 	private String branchName;
-	@NotNull
+	
 	private String ifscCode;
-	@NotNull
+	
 	private String branchAddress;
-	@NotNull
+	
 	private String micrCode;
-	@NotNull
+
 	private long contactNo;
 
 }

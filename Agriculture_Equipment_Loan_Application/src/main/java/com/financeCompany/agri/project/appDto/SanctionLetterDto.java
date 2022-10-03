@@ -1,6 +1,8 @@
 package com.financeCompany.agri.project.appDto;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.sun.istack.NotNull;
@@ -18,6 +20,7 @@ import lombok.ToString;
 public class SanctionLetterDto {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int applicationID;
 
 	private String regFirstName;
