@@ -32,14 +32,18 @@ public class RegistrationController
 		
 	}
 	
-	@PostMapping(value = "/addRegistrationDetails",produces = {"application/json"})
+	// end points : http://localhost:9999/registrationDetails/addRegistrationDetails
+	
+	@PostMapping("/addRegistrationDetails")
 	public ResponseEntity<String> addRegistrationDetails(@RequestBody RegistrationDetails registrationDetails)
 	   {
-		System.out.println(registrationDetails);
+		System.out.println(registrationDetails.getEmail());
 	    String str = service.addRegistrationDetails(registrationDetails);
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	   }
 	
+	
+	// end points : http://localhost:9999/registrationDetails/getRegistrationDetails
 	
 	@GetMapping(value = "/getRegistrationDetails",produces ={"application/json"})
 	
@@ -48,6 +52,9 @@ public class RegistrationController
 		 List<RegistrationDetails> registrationDetails = service.getRegistrationDetails();
 		 return new ResponseEntity<List<RegistrationDetails>>(registrationDetails,HttpStatus.OK);
 	}
+	
+	
+	// end point : http://localhost:9999/registrationDetails/getSingleMapping/12345
 	
 	@GetMapping(value = "/getSingleMapping/{regcustomerid}",produces ={"application/json"} )
 	public ResponseEntity<Object> getSingleRegistration(@PathVariable int regcustomerid)

@@ -1,11 +1,9 @@
-package com.financeCompany.agri.project.appModel;
+package com.financeCompany.agri.project.appDto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,25 +13,18 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegistraionAddress
-{
+public class EnquirySubsidyOfferDto {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
- 	private int addressid;
+	private int productId;
+	private int enquiryid;
+	private String productName;
+	private String percentageOfSubsidy;
+	private String maxSubsidyUpto;
+	private String eligibiltyCriteria;
 	
- 	private int houseNo;
 	
- 	private String areaName;
 	
- 	private String streetName;
 	
- 	private String cityname;
-	
- 	private String district;
-	
- 	private String state;
-	
- 	private int pincode;
-
-
 }

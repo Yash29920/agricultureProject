@@ -29,33 +29,33 @@ public class RegistrationDetails
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private int regcustomerid;
 	
-	@NotNull
+	
     private String username;
-	@NotNull
+	
 	private String password;
 	
-	@NotNull
+	
     private String regFirstName;
-	@NotNull
+	
 	private String regMiddleName;
-	@NotNull
+	
 	private String regLastName;
-	@NotNull
+	
 	private Date dateOfBirth;
-	@NotNull
+	
 	private String gender;
-	@NotNull
+	
 	private long mobile;
-	@NotNull
+	
 	private String email;
-	@NotNull
+	
 	private String panNo;
 	
-	@NotNull
+	
     private String	equipmentName;
-	@NotNull
+	
 	private double requiredLoanAmount;
-	@NotNull
+	
 	private String equipmentDetails;
 	
 	

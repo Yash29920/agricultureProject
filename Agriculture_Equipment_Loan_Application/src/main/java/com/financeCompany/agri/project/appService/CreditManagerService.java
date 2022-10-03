@@ -12,6 +12,6 @@ public interface CreditManagerService {
 
 	void emiUpdate(List<EmiCalculation> emiCalculation);
 
-	CMCustomerResponseDto getSingleDtoEntry(int regcustomerid);
+	//CMCustomerResponseDto getSingleDtoEntry(int regcustomerid);
 
 }

@@ -5,35 +5,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.sun.istack.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegistraionAddress
-{
+public class EnquiryEmiCalculation {
+
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
- 	private int addressid;
+	private int enqemiid;
 	
- 	private int houseNo;
-	
- 	private String areaName;
-	
- 	private String streetName;
-	
- 	private String cityname;
-	
- 	private String district;
-	
- 	private String state;
-	
- 	private int pincode;
-
-
+	private int enquiryid;
+	private double monthlyEmi;
+	private double interest;
+	private double totalAmount;
+	private String rateOfInterest;
+	private double loanTenure;
+	private double requiredLoanAmount;
 }
