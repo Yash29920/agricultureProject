@@ -6,6 +6,7 @@ import com.financeCompany.agri.project.appDto.CMCusRespEMIDto;
 import com.financeCompany.agri.project.appDto.CMCustomerResponseDto;
 import com.financeCompany.agri.project.appModel.CibilScoreCheck;
 import com.financeCompany.agri.project.appModel.EmiCalculation;
+import com.financeCompany.agri.project.appModel.RegisterId;
 
 public interface CreditManagerService {
 
@@ -16,5 +17,7 @@ public interface CreditManagerService {
 	CMCustomerResponseDto getSingleDtoEntry(int regcustomerid);
 
 	String setCustomerPreference(CMCusRespEMIDto cMCusRespEMIDto);
+
+	CMCustomerResponseDto getSingleDtoEntryusingobject(RegisterId registerId);
 
 }
