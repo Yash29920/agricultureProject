@@ -20,6 +20,7 @@ import com.financeCompany.agri.project.appDto.CreditManagerDto;
 import com.financeCompany.agri.project.appDto.OperationHeadDto;
 import com.financeCompany.agri.project.appModel.CibilScoreCheck;
 import com.financeCompany.agri.project.appModel.EmiCalculation;
+import com.financeCompany.agri.project.appModel.RegisterId;
 import com.financeCompany.agri.project.appModel.RegistrationDetails;
 import com.financeCompany.agri.project.appService.CreditManagerService;
 
@@ -57,11 +58,19 @@ public class CreditManagerController {
 	  public ResponseEntity<CMCustomerResponseDto> getSingleDtoEntry(@PathVariable int regcustomerid) { 
 		  
 		  
-		  CMCustomerResponseDto  singleDtoEntry = cmservice.getSingleDtoEntry(regcustomerid); return new
-	  ResponseEntity<CMCustomerResponseDto>(singleDtoEntry,HttpStatus.OK);
+		  CMCustomerResponseDto  singleDtoEntry = cmservice.getSingleDtoEntry(regcustomerid); 
+		  return new ResponseEntity<CMCustomerResponseDto>(singleDtoEntry,HttpStatus.OK);
 	  
 	  }
 	 
+	  
+	  @GetMapping(value = "/getSingleDtoEntryusingobject",produces ={"application/json"} ) 
+	  public ResponseEntity<CMCustomerResponseDto> getSingleDtoEntryusingobject(@RequestBody RegisterId registerId) { 
+		  
+		  CMCustomerResponseDto  singleDtoEntry = cmservice.getSingleDtoEntryusingobject(registerId); 
+		  return new ResponseEntity<CMCustomerResponseDto>(singleDtoEntry,HttpStatus.OK);
+	  
+	  }
 	  
 	  @PostMapping("/setCustomerPreference")
 	  public ResponseEntity<String> setCustomerPreference(@RequestBody CMCusRespEMIDto cMCusRespEMIDto)

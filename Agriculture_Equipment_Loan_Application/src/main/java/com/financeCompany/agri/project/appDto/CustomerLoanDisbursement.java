@@ -50,7 +50,6 @@ public class CustomerLoanDisbursement {
 
 	private double processingFees;
 
-	private String loanStatus;
 	
 	private Date customerLoanCompletionDate;
 	

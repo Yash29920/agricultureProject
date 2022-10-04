@@ -10,6 +10,7 @@ import com.financeCompany.agri.project.appDto.CMCustomerResponseDto;
 import com.financeCompany.agri.project.appDto.SanctionLetterDto;
 import com.financeCompany.agri.project.appModel.CibilScoreCheck;
 import com.financeCompany.agri.project.appModel.EmiCalculation;
+import com.financeCompany.agri.project.appModel.RegisterId;
 import com.financeCompany.agri.project.appModel.RegistrationDetails;
 import com.financeCompany.agri.project.appRepository.RegistrationRepository;
 import com.financeCompany.agri.project.appRepository.SanctionLetterRepository;
@@ -151,7 +152,7 @@ public class CreditManagerServiceIMPL implements CreditManagerService {
 		double sanctionAmt = (requiredLoanAmount)*0.7;
 		sld.setSanctionAmount(sanctionAmt);
 
-		double processingFs=(requiredLoanAmount)*0.2;
+		double processingFs=(requiredLoanAmount)*0.02;
 		sld.setProcessingFees(processingFs);
 			
 		sld.setStatus(registrationDetails.getCibilScoreCheck().getStatus());
@@ -160,5 +161,60 @@ public class CreditManagerServiceIMPL implements CreditManagerService {
 		sanctionLetterRepository.save(sld);
 		
 		return "OK";
+	}
+
+	@Override
+	public CMCustomerResponseDto getSingleDtoEntryusingobject(RegisterId registerId) {
+		
+		int regcustomerid = registerId.getRegcustomerid();
+
+		  RegistrationDetails registrationDetails = regRepository.findById(regcustomerid).get();
+		  
+		  if(registrationDetails ==null) 
+			  throw new NullPointerException(); 
+		  else {
+		  
+		  CMCustomerResponseDto cmcusdto =new CMCustomerResponseDto();
+		  
+		  cmcusdto.setRegcustomerid(registrationDetails.getRegcustomerid());
+		  cmcusdto.setRegFirstName(registrationDetails.getRegFirstName());
+		  cmcusdto.setRegMiddleName(registrationDetails.getRegMiddleName());
+		  cmcusdto.setRegLastName(registrationDetails.getRegLastName());
+		  cmcusdto.setEmail(registrationDetails.getEmail());
+		  cmcusdto.setPanNo(registrationDetails.getEmail());
+		  cmcusdto.setMobile(registrationDetails.getMobile());
+		  cmcusdto.setGender(registrationDetails.getGender());
+		  cmcusdto.setCibilscore(registrationDetails.getCibilScoreCheck().getCibilscore());
+		  cmcusdto.setStatus(registrationDetails.getCibilScoreCheck().getStatus());
+		  
+		  
+		  cmcusdto.setEmiid1(registrationDetails.getEmiCalculation().get(0).getEmiid());
+		  cmcusdto.setMonthlyEmi1(registrationDetails.getEmiCalculation().get(0).getMonthlyEmi());
+		  cmcusdto.setInterest1(registrationDetails.getEmiCalculation().get(0).getInterest());
+		  cmcusdto.setTotalAmount1(registrationDetails.getEmiCalculation().get(0).getTotalAmount());
+		  cmcusdto.setRateOfInterest1(registrationDetails.getEmiCalculation().get(0).getRateOfInterest());
+		  cmcusdto.setLoanTenure1(registrationDetails.getEmiCalculation().get(0).getLoanTenure());
+		  cmcusdto.setRequiredLoanAmount1(registrationDetails.getEmiCalculation().get(0).getRequiredLoanAmount());
+
+
+		  cmcusdto.setEmiid2(registrationDetails.getEmiCalculation().get(1).getEmiid());
+		  cmcusdto.setMonthlyEmi2(registrationDetails.getEmiCalculation().get(1).getMonthlyEmi());
+		  cmcusdto.setInterest2(registrationDetails.getEmiCalculation().get(1).getInterest());
+		  cmcusdto.setTotalAmount2(registrationDetails.getEmiCalculation().get(1).getTotalAmount());
+		  cmcusdto.setRateOfInterest2(registrationDetails.getEmiCalculation().get(1).getRateOfInterest());
+		  cmcusdto.setLoanTenure2(registrationDetails.getEmiCalculation().get(1).getLoanTenure());
+		  cmcusdto.setRequiredLoanAmount2(registrationDetails.getEmiCalculation().get(1).getRequiredLoanAmount());
+
+		  cmcusdto.setEmiid3(registrationDetails.getEmiCalculation().get(2).getEmiid());
+		  cmcusdto.setMonthlyEmi3(registrationDetails.getEmiCalculation().get(2).getMonthlyEmi());
+		  cmcusdto.setInterest3(registrationDetails.getEmiCalculation().get(2).getInterest());
+		  cmcusdto.setTotalAmount3(registrationDetails.getEmiCalculation().get(2).getTotalAmount());
+		  cmcusdto.setRateOfInterest3(registrationDetails.getEmiCalculation().get(2).getRateOfInterest());
+		  cmcusdto.setLoanTenure3(registrationDetails.getEmiCalculation().get(2).getLoanTenure());
+		  cmcusdto.setRequiredLoanAmount3(registrationDetails.getEmiCalculation().get(2).getRequiredLoanAmount());
+
+		  	return cmcusdto;
+		  }
+		
 	}
 }
