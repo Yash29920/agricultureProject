@@ -34,7 +34,28 @@ public class CMCustomerResponseDto {
 	private int cibilscore;
 	private String status;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<CMCusRespEMIDto> cMCusRespEMIDto;
+	private int emiid1;
+	private double monthlyEmi1;
+	private double interest1;
+	private double totalAmount1;
+	private String rateOfInterest1;
+	private double loanTenure1;
+	private double requiredLoanAmount1;
+	
+	private int emiid2;
+	private double monthlyEmi2;
+	private double interest2;
+	private double totalAmount2;
+	private String rateOfInterest2;
+	private double loanTenure2;
+	private double requiredLoanAmount2;
+	
+	private int emiid3;
+	private double monthlyEmi3;
+	private double interest3;
+	private double totalAmount3;
+	private String rateOfInterest3;
+	private double loanTenure3;
+	private double requiredLoanAmount3;
 	
 }

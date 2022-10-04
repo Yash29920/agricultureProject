@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.financeCompany.agri.project.appDto.CMCusRespEMIDto;
 import com.financeCompany.agri.project.appDto.CMCustomerResponseDto;
 import com.financeCompany.agri.project.appDto.CreditManagerDto;
 import com.financeCompany.agri.project.appDto.OperationHeadDto;
@@ -51,15 +52,25 @@ public class CreditManagerController {
 	   return new ResponseEntity(HttpStatus.OK);
 	  }
 	
-	/*
-	 * @GetMapping(value = "/getSingleDtoEntry/{regcustomerid}",produces
-	 * ={"application/json"} ) public ResponseEntity<CMCustomerResponseDto>
-	 * getSingleDtoEntry(@PathVariable int regcustomerid) { CMCustomerResponseDto
-	 * singleDtoEntry = cmservice.getSingleDtoEntry(regcustomerid); return new
-	 * ResponseEntity<CMCustomerResponseDto>(singleDtoEntry,HttpStatus.OK);
-	 * 
-	 * }
-	 */
+	
+	  @GetMapping(value = "/getSingleDtoEntry/{regcustomerid}",produces ={"application/json"} ) 
+	  public ResponseEntity<CMCustomerResponseDto> getSingleDtoEntry(@PathVariable int regcustomerid) { 
+		  
+		  
+		  CMCustomerResponseDto  singleDtoEntry = cmservice.getSingleDtoEntry(regcustomerid); return new
+	  ResponseEntity<CMCustomerResponseDto>(singleDtoEntry,HttpStatus.OK);
+	  
+	  }
+	 
+	  
+	  @PostMapping("/setCustomerPreference")
+	  public ResponseEntity<String> setCustomerPreference(@RequestBody CMCusRespEMIDto cMCusRespEMIDto)
+	  {
+		  System.out.println(cMCusRespEMIDto.getMonthlyEmi());
+		  String msg = cmservice.setCustomerPreference(cMCusRespEMIDto);
+		  
+		  return new ResponseEntity<String>(msg,HttpStatus.OK);
+	  } 
 	
 	
 }

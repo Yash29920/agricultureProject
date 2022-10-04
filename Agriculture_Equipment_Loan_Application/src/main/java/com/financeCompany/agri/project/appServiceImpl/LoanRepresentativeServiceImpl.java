@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.financeCompany.agri.project.appDto.EnquirySubsidyOfferDto;
-import com.financeCompany.agri.project.appModel.EmiCalculation;
+
 import com.financeCompany.agri.project.appModel.EnquiryDetails;
 import com.financeCompany.agri.project.appModel.EnquiryEmiCalculation;
-import com.financeCompany.agri.project.appModel.SubsidyOffer;
+
 import com.financeCompany.agri.project.appRepository.AppRepository;
 import com.financeCompany.agri.project.appRepository.SubsidyRepository;
 import com.financeCompany.agri.project.appService.LoanRepresentativeService;
@@ -22,8 +22,7 @@ public class LoanRepresentativeServiceImpl implements LoanRepresentativeService{
 	@Autowired
 	private AppRepository repository;
 	
-	@Autowired
-	private SubsidyRepository subsidyrepository;
+
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	@Override
