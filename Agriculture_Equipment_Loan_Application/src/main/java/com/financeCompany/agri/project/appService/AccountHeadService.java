@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.financeCompany.agri.project.appDto.CustomerLoanDisbursement;
 import com.financeCompany.agri.project.appDto.SanctionLetterDto;
+import com.financeCompany.agri.project.appModel.CustomerLedger;
 import com.financeCompany.agri.project.appModel.DisbursementEntry;
 
 public interface AccountHeadService {
@@ -15,5 +16,7 @@ public interface AccountHeadService {
 	SanctionLetterDto getSanctioLetterBYId(int regcustomerid);
 
 	CustomerLoanDisbursement getDisbursementLetterBYId(int regcustomerid);
+
+	CustomerLedger generateLedgerByID(int regcustomerid);
 
 }

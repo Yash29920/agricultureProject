@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.financeCompany.agri.project.appDto.CustomerLoanDisbursement;
 import com.financeCompany.agri.project.appDto.SanctionLetterDto;
+import com.financeCompany.agri.project.appModel.CustomerLedger;
 import com.financeCompany.agri.project.appModel.DisbursementEntry;
 import com.financeCompany.agri.project.appService.AccountHeadService;
 
@@ -63,12 +64,14 @@ public class AccountHeadController {
 	  }
 	  
 	  
-	/*
-	 * @PostMapping("/generateDisbursementLetter") public ResponseEntity<String>
-	 * generateDisbursementLetter(){
-	 * 
-	 * return new ResponseEntity<String>(); }
-	 */
+	
+	  @GetMapping("/generateLedgerByID/{regcustomerid}") 
+	  public ResponseEntity<CustomerLedger> generateLedgerByID(int regcustomerid){
+	  
+		  CustomerLedger customerLedger = accountHeadService.generateLedgerByID(regcustomerid);
+		  
+	  return new ResponseEntity<CustomerLedger>(customerLedger,HttpStatus.OK); }
+	 
 	
 	
 	  

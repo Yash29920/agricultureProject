@@ -1,6 +1,8 @@
 package com.financeCompany.agri.project.appServiceImpl;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.TemporalAdjuster;
 import java.util.Date;
 import java.util.List;
 
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.financeCompany.agri.project.appDto.CustomerLoanDisbursement;
 import com.financeCompany.agri.project.appDto.SanctionLetterDto;
+import com.financeCompany.agri.project.appModel.CustomerLedger;
 import com.financeCompany.agri.project.appModel.DisbursementEntry;
 import com.financeCompany.agri.project.appModel.RegistrationDetails;
 import com.financeCompany.agri.project.appRepository.DisbursementRepository;
+import com.financeCompany.agri.project.appRepository.LedgerRepository;
 import com.financeCompany.agri.project.appRepository.RegistrationRepository;
 import com.financeCompany.agri.project.appRepository.SanctionLetterRepository;
 import com.financeCompany.agri.project.appService.AccountHeadService;
@@ -27,6 +31,9 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 	
 	@Autowired
 	private DisbursementRepository disbursementRepository;
+	
+	@Autowired
+	private LedgerRepository ledgerRepository;
 	
 	
 	  @Override 
@@ -81,6 +88,10 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 		
 		
 		disbursementRepository.save(cld);
+		
+		//////////////////////////disbursement done ////////////////////////////////////////////////////////////////
+		/////////////////////////auto Ledger set start///////////////////////////////////////////////////////////////////
+		
 		return "Added";
 	}
 
@@ -111,6 +122,36 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 		else 
 			return customerLoanDisbursement;
 
+	}
+
+
+	@Override
+	public CustomerLedger generateLedgerByID(int regcustomerid) {
+		
+		RegistrationDetails registrationDetails = regRepository.findById(regcustomerid).get();
+		SanctionLetterDto sanctionLetterDto = sanctionLetterRepository.findById(regcustomerid).get();
+		CustomerLedger cl =new CustomerLedger();
+		cl.setRegcustomerid(regcustomerid);
+		cl.setMonthlyEmi(sanctionLetterDto.getSanctionAmount());
+		
+		cl.setSanctionAmount(sanctionLetterDto.getSanctionAmount());
+		CustomerLoanDisbursement customerLoanDisbursement = disbursementRepository.findById(regcustomerid).get();
+		
+		Date customerDisbursementDate = customerLoanDisbursement.getCustomerDisbursementDate();
+		
+		LocalDate paiddt= LocalDate.now();
+		cl.setEmiPaidDate(paiddt);
+		
+		//LocalDate emiDuedt= emiDuedt.with()
+		
+		
+		//cl.setEmiDueDate(emiDuedt);
+		
+		ledgerRepository.save(cl);
+		
+		return cl;
+		
+		
 	}
 	 
 
