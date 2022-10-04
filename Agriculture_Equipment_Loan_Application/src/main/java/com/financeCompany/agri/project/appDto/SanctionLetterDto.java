@@ -23,6 +23,8 @@ public class SanctionLetterDto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int applicationID;
 
+	private int regcustomerid;
+	
 	private String regFirstName;
 
 	private String regMiddleName;
@@ -37,9 +39,9 @@ public class SanctionLetterDto {
 
 	private int cibilscore;
 
-	private double rateOfInterest;
+	private String rateOfInterest;
 
-	private int loanTenure;
+	private double loanTenure;
 
 	private double monthlyEmi;
 

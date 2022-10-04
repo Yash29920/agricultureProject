@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CMCusRespEMIDto {
-	private int emiid;
 	private int regcustomerid;
 	private double monthlyEmi;
 	private double interest;

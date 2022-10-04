@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import com.financeCompany.agri.project.appController.CreditManagerController;
 import com.financeCompany.agri.project.appDto.CMCusRespEMIDto;
 import com.financeCompany.agri.project.appDto.CMCustomerResponseDto;
+import com.financeCompany.agri.project.appDto.SanctionLetterDto;
 import com.financeCompany.agri.project.appModel.CibilScoreCheck;
 import com.financeCompany.agri.project.appModel.CustomerVerify;
 import com.financeCompany.agri.project.appModel.EmiCalculation;
@@ -17,6 +18,7 @@ import com.financeCompany.agri.project.appModel.EnquiryDetails;
 import com.financeCompany.agri.project.appModel.RegistrationDetails;
 import com.financeCompany.agri.project.appRepository.CMCustomerResponseDtoRepository;
 import com.financeCompany.agri.project.appRepository.RegistrationRepository;
+import com.financeCompany.agri.project.appRepository.SanctionLetterRepository;
 import com.financeCompany.agri.project.appService.CreditManagerService;
 
 @Service
@@ -27,6 +29,9 @@ public class CreditManagerServiceIMPL implements CreditManagerService {
 
 	@Autowired
 	private CMCustomerResponseDtoRepository cmDtoRepository;
+	
+	@Autowired
+	private SanctionLetterRepository sanctionLetterRepository;
 
 	@Override
 	public void cibilscore(CibilScoreCheck cibilScoreCheck) {
@@ -68,77 +73,99 @@ public class CreditManagerServiceIMPL implements CreditManagerService {
 			throw new NoSuchElementException();
 	}
 
-	/*
-	 * @Override public CMCustomerResponseDto getSingleDtoEntry(int regcustomerid) {
-	 * 
-	 * 
-	 * RegistrationDetails registrationDetails =
-	 * regRepository.findById(regcustomerid).get();
-	 * 
-	 * if(registrationDetails ==null) throw new NullPointerException(); else {
-	 * 
-	 * CMCustomerResponseDto cmcusdto =new CMCustomerResponseDto();
-	 * 
-	 * cmcusdto.setRegcustomerid(registrationDetails.getRegcustomerid());
-	 * cmcusdto.setRegFirstName(registrationDetails.getRegFirstName());
-	 * cmcusdto.setRegMiddleName(registrationDetails.getRegMiddleName());
-	 * cmcusdto.setRegLastName(registrationDetails.getRegLastName());
-	 * cmcusdto.setEmail(registrationDetails.getEmail());
-	 * cmcusdto.setPanNo(registrationDetails.getEmail());
-	 * cmcusdto.setMobile(registrationDetails.getMobile());
-	 * cmcusdto.setGender(registrationDetails.getGender());
-	 * cmcusdto.setCibilscore(registrationDetails.getCibilScoreCheck().getCibilscore
-	 * ());
-	 * cmcusdto.setStatus(registrationDetails.getCibilScoreCheck().getStatus());
-	 * 
-	 * 
-	 * List<EmiCalculation> reglist = registrationDetails.getEmiCalculation();
-	 * 
-	 * List<CMCusRespEMIDto> cusresplist = cmcusdto.getCMCusRespEMIDto();
-	 * cusresplist.addAll(reglist);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * CMCusRespEMIDto cmCusRespEMIDto = cmcusdto.getCMCusRespEMIDto().get(0);
-	 * EmiCalculation emiCalculation =
-	 * registrationDetails.getEmiCalculation().get(0);
-	 * cmCusRespEMIDto.setMonthlyEmi(emiCalculation.getMonthlyEmi());
-	 * 
-	 * 
-	 * 
-	 * 
-	 * CMCusRespEMIDto cmCusRespEMIDto = cmcusdto.getCMCusRespEMIDto().get(0);
-	 * EmiCalculation emiCalculation =
-	 * registrationDetails.getEmiCalculation().get(0);
-	 * cmCusRespEMIDto.setMonthlyEmi(emiCalculation.getMonthlyEmi());
-	 * 
-	 * CMCusRespEMIDto cmCusRespEMIDto = cmcusdto.getCMCusRespEMIDto().get(0);
-	 * EmiCalculation emiCalculation =
-	 * registrationDetails.getEmiCalculation().get(0);
-	 * cmCusRespEMIDto.setMonthlyEmi(emiCalculation.getMonthlyEmi());
-	 * 
-	 * CMCusRespEMIDto cmCusRespEMIDto = cmcusdto.getCMCusRespEMIDto().get(0);
-	 * EmiCalculation emiCalculation =
-	 * registrationDetails.getEmiCalculation().get(0);
-	 * cmCusRespEMIDto.setMonthlyEmi(emiCalculation.getMonthlyEmi());
-	 * 
-	 * CMCusRespEMIDto cmCusRespEMIDto = cmcusdto.getCMCusRespEMIDto().get(0);
-	 * EmiCalculation emiCalculation =
-	 * registrationDetails.getEmiCalculation().get(0);
-	 * cmCusRespEMIDto.setMonthlyEmi(emiCalculation.getMonthlyEmi());
-	 * 
-	 * CMCusRespEMIDto cmCusRespEMIDto = cmcusdto.getCMCusRespEMIDto().get(0);
-	 * EmiCalculation emiCalculation =
-	 * registrationDetails.getEmiCalculation().get(0);
-	 * cmCusRespEMIDto.setMonthlyEmi(emiCalculation.getMonthlyEmi());
-	 * 
-	 * 
-	 * 
-	 * 
-	 * return obj; }
-	 * 
-	 * }
-	 */
+	
+	  @Override public CMCustomerResponseDto getSingleDtoEntry(int regcustomerid) {
+	  
+	  
+	  RegistrationDetails registrationDetails = regRepository.findById(regcustomerid).get();
+	  
+	  if(registrationDetails ==null) 
+		  throw new NullPointerException(); 
+	  else {
+	  
+	  CMCustomerResponseDto cmcusdto =new CMCustomerResponseDto();
+	  
+	  cmcusdto.setRegcustomerid(registrationDetails.getRegcustomerid());
+	  cmcusdto.setRegFirstName(registrationDetails.getRegFirstName());
+	  cmcusdto.setRegMiddleName(registrationDetails.getRegMiddleName());
+	  cmcusdto.setRegLastName(registrationDetails.getRegLastName());
+	  cmcusdto.setEmail(registrationDetails.getEmail());
+	  cmcusdto.setPanNo(registrationDetails.getEmail());
+	  cmcusdto.setMobile(registrationDetails.getMobile());
+	  cmcusdto.setGender(registrationDetails.getGender());
+	  cmcusdto.setCibilscore(registrationDetails.getCibilScoreCheck().getCibilscore());
+	  cmcusdto.setStatus(registrationDetails.getCibilScoreCheck().getStatus());
+	  
+	  
+	  cmcusdto.setEmiid1(registrationDetails.getEmiCalculation().get(0).getEmiid());
+	  cmcusdto.setMonthlyEmi1(registrationDetails.getEmiCalculation().get(0).getMonthlyEmi());
+	  cmcusdto.setInterest1(registrationDetails.getEmiCalculation().get(0).getInterest());
+	  cmcusdto.setTotalAmount1(registrationDetails.getEmiCalculation().get(0).getTotalAmount());
+	  cmcusdto.setRateOfInterest1(registrationDetails.getEmiCalculation().get(0).getRateOfInterest());
+	  cmcusdto.setLoanTenure1(registrationDetails.getEmiCalculation().get(0).getLoanTenure());
+	  cmcusdto.setRequiredLoanAmount1(registrationDetails.getEmiCalculation().get(0).getRequiredLoanAmount());
 
+
+	  cmcusdto.setEmiid2(registrationDetails.getEmiCalculation().get(1).getEmiid());
+	  cmcusdto.setMonthlyEmi2(registrationDetails.getEmiCalculation().get(1).getMonthlyEmi());
+	  cmcusdto.setInterest2(registrationDetails.getEmiCalculation().get(1).getInterest());
+	  cmcusdto.setTotalAmount2(registrationDetails.getEmiCalculation().get(1).getTotalAmount());
+	  cmcusdto.setRateOfInterest2(registrationDetails.getEmiCalculation().get(1).getRateOfInterest());
+	  cmcusdto.setLoanTenure2(registrationDetails.getEmiCalculation().get(1).getLoanTenure());
+	  cmcusdto.setRequiredLoanAmount2(registrationDetails.getEmiCalculation().get(1).getRequiredLoanAmount());
+
+	  cmcusdto.setEmiid3(registrationDetails.getEmiCalculation().get(2).getEmiid());
+	  cmcusdto.setMonthlyEmi3(registrationDetails.getEmiCalculation().get(2).getMonthlyEmi());
+	  cmcusdto.setInterest3(registrationDetails.getEmiCalculation().get(2).getInterest());
+	  cmcusdto.setTotalAmount3(registrationDetails.getEmiCalculation().get(2).getTotalAmount());
+	  cmcusdto.setRateOfInterest3(registrationDetails.getEmiCalculation().get(2).getRateOfInterest());
+	  cmcusdto.setLoanTenure3(registrationDetails.getEmiCalculation().get(2).getLoanTenure());
+	  cmcusdto.setRequiredLoanAmount3(registrationDetails.getEmiCalculation().get(2).getRequiredLoanAmount());
+
+	  	return cmcusdto;
+	  }
+	 
+	  }
+
+	@Override
+	public String setCustomerPreference(CMCusRespEMIDto cMCusRespEMIDto) {
+		
+		  	//new Automatic Sanction letter Generation Operation Starts
+		
+		SanctionLetterDto sld =new SanctionLetterDto();
+		sld.setMonthlyEmi(cMCusRespEMIDto.getMonthlyEmi());
+		sld.setInterest(cMCusRespEMIDto.getInterest());
+		sld.setTotalAmount(cMCusRespEMIDto.getTotalAmount());
+		sld.setLoanTenure(cMCusRespEMIDto.getLoanTenure());
+		sld.setRateOfInterest(cMCusRespEMIDto.getRateOfInterest());
+		
+		int regcustomerid = cMCusRespEMIDto.getRegcustomerid();
+		sld.setRegcustomerid(regcustomerid);
+		
+		RegistrationDetails registrationDetails = regRepository.findById(regcustomerid).get();
+		
+		sld.setRegFirstName(registrationDetails.getRegFirstName());
+		sld.setRegMiddleName(registrationDetails.getRegMiddleName());
+		sld.setRegLastName(registrationDetails.getRegLastName());
+		sld.setEquipmentName(registrationDetails.getEquipmentName());
+		sld.setEquipmentDetails(registrationDetails.getEquipmentDetails());
+		sld.setRequiredLoanAmount(registrationDetails.getRequiredLoanAmount());
+		
+		sld.setCibilscore(registrationDetails.getCibilScoreCheck().getCibilscore());
+		
+		//
+		double requiredLoanAmount = registrationDetails.getRequiredLoanAmount();
+		double sanctionAmt = (requiredLoanAmount)*0.7;
+		sld.setSanctionAmount(sanctionAmt);
+
+		double processingFs=(requiredLoanAmount)*0.2;
+		sld.setProcessingFees(processingFs);
+			
+		sld.setStatus(registrationDetails.getCibilScoreCheck().getStatus());
+		sld.setComment(registrationDetails.getCibilScoreCheck().getComment());
+		
+		sanctionLetterRepository.save(sld);
+		
+		return "OK";
+	}
 }
