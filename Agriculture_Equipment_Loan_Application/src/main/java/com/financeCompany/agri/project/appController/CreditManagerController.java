@@ -63,6 +63,7 @@ public class CreditManagerController {
 	  
 	  }
 	 
+	  ///optional extra method to getbyid  & same is optional class name === RegisterId /////////////
 	  
 	  @GetMapping(value = "/getSingleDtoEntryusingobject",produces ={"application/json"} ) 
 	  public ResponseEntity<CMCustomerResponseDto> getSingleDtoEntryusingobject(@RequestBody RegisterId registerId) { 
