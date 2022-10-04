@@ -5,18 +5,12 @@ import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import com.financeCompany.agri.project.appController.CreditManagerController;
 import com.financeCompany.agri.project.appDto.CMCusRespEMIDto;
 import com.financeCompany.agri.project.appDto.CMCustomerResponseDto;
 import com.financeCompany.agri.project.appDto.SanctionLetterDto;
 import com.financeCompany.agri.project.appModel.CibilScoreCheck;
-import com.financeCompany.agri.project.appModel.CustomerVerify;
 import com.financeCompany.agri.project.appModel.EmiCalculation;
-import com.financeCompany.agri.project.appModel.EnquiryDetails;
 import com.financeCompany.agri.project.appModel.RegistrationDetails;
-import com.financeCompany.agri.project.appRepository.CMCustomerResponseDtoRepository;
 import com.financeCompany.agri.project.appRepository.RegistrationRepository;
 import com.financeCompany.agri.project.appRepository.SanctionLetterRepository;
 import com.financeCompany.agri.project.appService.CreditManagerService;
@@ -27,8 +21,7 @@ public class CreditManagerServiceIMPL implements CreditManagerService {
 	@Autowired
 	private RegistrationRepository regRepository;
 
-	@Autowired
-	private CMCustomerResponseDtoRepository cmDtoRepository;
+	
 	
 	@Autowired
 	private SanctionLetterRepository sanctionLetterRepository;
