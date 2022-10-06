@@ -19,25 +19,29 @@ public class PreviousLoan
 {
 
 	 @Id
-	 @GeneratedValue(strategy = GenerationType.SEQUENCE)
-	 private int ploanId;
-	 @NotNull
+	 @GeneratedValue(strategy = GenerationType.AUTO)
+	 private int ploanid;
+	
 	 private double ploanAmount;
-	 @NotNull
+	
 	 private double pTenure;
-	 @NotNull
+	
 	 private double paidAmount;
-	 @NotNull
-	 private double remainingAmount;
-	 @NotNull
-	 private int deafulterCount;
-	 @NotNull
-	 private String pbankDetails;
-	 @NotNull
-	 private String status;
-	 @NotNull
-	 private String	remark;
 	 
+	 private double remainingAmount;
+	
+	 private String branchName;
+	
+	 private String ifscCode;
+	 
+	 private String micr;
+	 
+	 private long contactNo;
+	
+	 private String branchAddress;
+	
+	 private String email;
+	 	 
 
 
 }

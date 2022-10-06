@@ -1,6 +1,9 @@
 package com.financeCompany.agri.project.appModel;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.sun.istack.NotNull;
@@ -16,7 +19,11 @@ import lombok.NoArgsConstructor;
 public class Bankdetails
 {
 	@Id
-	private long bankAccountNo;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int bankid;
+	
+	@NotNull
+    private long bankaccountno;
 	@NotNull
     private String bankName;
 	@NotNull
@@ -28,6 +35,6 @@ public class Bankdetails
 	@NotNull
 	private String micrCode;
 	@NotNull
-	private long conatctNo;
+	private long contactNo;
 
 }
