@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.financeCompany.agri.project.appDto.DocumentsDto;
+import com.financeCompany.agri.project.appModel.Documents;
 import com.financeCompany.agri.project.appModel.RegistrationDetails;
 
 public interface RegistrationService 
@@ -13,7 +15,9 @@ public interface RegistrationService
 
  List<RegistrationDetails> getRegistrationDetails();
 
- Object getSingleRegistration(int regcustomerid);
+ RegistrationDetails getSingleRegistration(int regcustomerid);
+	
+	void saveDocuments(DocumentsDto doc);
 	
 
 }

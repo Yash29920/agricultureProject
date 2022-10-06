@@ -22,26 +22,27 @@ public class PreviousLoan
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private int ploanid;
 	
+
 	 private double ploanAmount;
-	
+		
 	 private double pTenure;
 	
 	 private double paidAmount;
 	 
 	 private double remainingAmount;
 	
-	 private String branchName;
+	 private String pbranchName;
 	
-	 private String ifscCode;
+	 private String pifscCode;
 	 
 	 private String micr;
 	 
-	 private long contactNo;
+	 private long pcontactNo;
 	
-	 private String branchAddress;
+	 private String pbranchAddress;
 	
-	 private String email;
-	 	 
+	 private String pbankemail;
+
 
 
 }

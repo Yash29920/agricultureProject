@@ -20,19 +20,19 @@ public class RegistraionAddress
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
  	private int addressid;
-	@NotNull
+	
  	private int houseNo;
-	@NotNull
+	
  	private String areaName;
-	@NotNull
+	
  	private String streetName;
-	@NotNull
+	
  	private String cityname;
-	@NotNull
+	
  	private String district;
-	@NotNull
+	
  	private String state;
-	@NotNull
+	
  	private int pincode;
 
 

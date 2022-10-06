@@ -1,28 +1,18 @@
-package com.financeCompany.agri.project.appModel;
+package com.financeCompany.agri.project.appDto;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
-import com.sun.istack.NotNull;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Documents 
-{
+public class DocumentsDto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int documentid;
-	
+	private int documentdtoid;
 	private String panNo;
 	@Lob
 	private byte[] pancard;
@@ -52,7 +42,6 @@ public class Documents
 	private byte[] gPhoto;
 	@Lob
 	private byte[] gBankStatement;
+
 	
 }
-
-

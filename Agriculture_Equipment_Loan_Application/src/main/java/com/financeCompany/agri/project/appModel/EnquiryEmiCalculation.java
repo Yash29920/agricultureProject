@@ -1,35 +1,31 @@
 package com.financeCompany.agri.project.appModel;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.sun.istack.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class CustomerVerify {
+@NoArgsConstructor
+public class EnquiryEmiCalculation {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int verificationid;
+	private int enqemiid;
 	
-	private int regcustomerid;
-	
-	private Date verificationDate;
-	private String status;
-	private String remarks;
-	private String comment;
-	
-
-	
+	private int enquiryid;
+	private double monthlyEmi;
+	private double interest;
+	private double totalAmount;
+	private String rateOfInterest;
+	private double loanTenure;
+	private double requiredLoanAmount;
 }

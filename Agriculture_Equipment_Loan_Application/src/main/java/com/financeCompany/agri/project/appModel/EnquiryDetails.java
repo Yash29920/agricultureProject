@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.financeCompany.agri.project.appDto.EnquirySubsidyOfferDto;
 import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -26,43 +27,39 @@ public class EnquiryDetails
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int enquiryid;
-	@NotNull
-	private String username;
-	@NotNull
-	private String password;
-	@NotNull
+	
 	private String firstName;
-	@NotNull
+	
 	private String middleName;
-	@NotNull
+	
 	private String lastName;
-	@NotNull
+	
 	private Date dateOfBirth;
-	@NotNull
+
 	private int age;
-	@NotNull
+	
 	private String gender;
-	@NotNull
+	
     private	String email;
-	@NotNull
+	
 	private long mobileNo;
-	@NotNull
+	
 	private String pancardNo;
-	@NotNull
+	
 	private long aadharCardNo;
-	@NotNull
+	
     private String	equipmentName;
-	@NotNull
+	
 	private double loanAmount;
-	@NotNull
+	
 	private String equipmentDetails;
-	@NotNull
+	
     private String comment;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<EmiCalculation> emiCalculation;
+	private List<EnquiryEmiCalculation> enquiryEmiCalculation;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<SubsidyOffer> subsidyOffer;
+	private List<EnquirySubsidyOfferDto> enquirySubsidyOfferDto;
 	
 }
