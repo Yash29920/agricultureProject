@@ -1,5 +1,6 @@
 package com.financeCompany.agri.project.appDto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ public class CustomerLoanDisbursement {
 	
 	private int regcustomerid;
 	
-	private Date customerDisbursementDate;
+	private LocalDate customerDisbursementDate;
 	
 	private String regFirstName;
 
@@ -51,7 +52,7 @@ public class CustomerLoanDisbursement {
 	private double processingFees;
 
 	
-	private Date customerLoanCompletionDate;
+	private LocalDate customerLoanCompletionDate;
 	
 	private double loanDisbursedAmount;
 	

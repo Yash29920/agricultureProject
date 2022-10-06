@@ -29,13 +29,14 @@ public class OperationHeadController {
 	@Autowired
 	private OperationHeadService ohservice;
 	
-
+	//end points =  http://localhost:9999/operationHead/customerVerify
+		
 	@PutMapping("/customerVerify")
 	public ResponseEntity customerVerify(@RequestBody CustomerVerify customerVerify) 
 	  { 
-		  System.out.println(customerVerify); 
+		  System.out.println(customerVerify.getStatus()); 
 		  ohservice.customerVerify(customerVerify);
-	   return new ResponseEntity(HttpStatus.OK);
+		  return new ResponseEntity(HttpStatus.OK);
 	  }
 
 

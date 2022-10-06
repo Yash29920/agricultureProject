@@ -8,4 +8,5 @@ import com.financeCompany.agri.project.appDto.SanctionLetterDto;
 @Repository
 public interface SanctionLetterRepository extends JpaRepository<SanctionLetterDto, Integer> {
 
+	public SanctionLetterDto findByRegcustomeridLike(int regcustomerid);
 }

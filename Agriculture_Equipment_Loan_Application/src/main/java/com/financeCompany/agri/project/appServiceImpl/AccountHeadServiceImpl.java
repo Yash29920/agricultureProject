@@ -51,7 +51,7 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 	public String generateDisbursementLetter(DisbursementEntry disbursementEntry) {
 		
 		int regcustomerid = disbursementEntry.getRegcustomerid();
-		Date customerDisbursementDate = disbursementEntry.getCustomerDisbursementDate();
+		LocalDate customerDisbursementDate = disbursementEntry.getCustomerDisbursementDate();
 		
 		CustomerLoanDisbursement cld=new CustomerLoanDisbursement();
 		
@@ -67,7 +67,7 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 		cld.setEquipmentName(registrationDetails.getEquipmentName());
 		cld.setEquipmentDetails(registrationDetails.getEquipmentDetails());
 		
-		SanctionLetterDto sanctionLetterDto = sanctionLetterRepository.findById(regcustomerid).get();
+		SanctionLetterDto sanctionLetterDto = sanctionLetterRepository.findByRegcustomeridLike(regcustomerid);
 		
 		cld.setRateOfInterest(sanctionLetterDto.getRateOfInterest());
 		cld.setLoanTenure(sanctionLetterDto.getLoanTenure());
@@ -90,32 +90,85 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 		disbursementRepository.save(cld);
 		
 		//////////////////////////disbursement done ////////////////////////////////////////////////////////////////
-		/////////////////////////auto Ledger set start///////////////////////////////////////////////////////////////////
 		
 		return "Added";
 	}
 
+	/////////////////////////Disbursement by ID///////////////////////////////////////////////////////////////////
+	// Optional method
+	@Override
+	public String generateDisbursementLetterByID(int regcustomerid) {
+		
+		CustomerLoanDisbursement cld=new CustomerLoanDisbursement();
+		
+		System.out.println(regcustomerid);
+		cld.setRegcustomerid(regcustomerid);
+		
+		//cld.setCustomerDisbursementDate(customerDisbursementDate);
+		
+		RegistrationDetails registrationDetails = regRepository.findById(regcustomerid).get();
+		
+		
+		System.out.println(registrationDetails.getEmail());
+		System.out.println(registrationDetails.getMobile());
+		
+		cld.setRegFirstName(registrationDetails.getRegFirstName());
+		cld.setRegMiddleName(registrationDetails.getRegMiddleName());
+		cld.setRegLastName(registrationDetails.getRegLastName());
+		
+		cld.setEquipmentName(registrationDetails.getEquipmentName());
+		cld.setEquipmentDetails(registrationDetails.getEquipmentDetails());
+		
+		SanctionLetterDto sanctionLetterDto = sanctionLetterRepository.findByRegcustomeridLike(regcustomerid);
+		
+		cld.setRateOfInterest(sanctionLetterDto.getRateOfInterest());
+		cld.setLoanTenure(sanctionLetterDto.getLoanTenure());
+		cld.setMonthlyEmi(sanctionLetterDto.getMonthlyEmi());
+		cld.setInterest(sanctionLetterDto.getInterest());
+		cld.setTotalAmount(sanctionLetterDto.getTotalAmount());
+		cld.setSanctionAmount(sanctionLetterDto.getSanctionAmount());
+		
+		cld.setProcessingFees(sanctionLetterDto.getProcessingFees());
+		cld.setLoanDisbursedAmount(sanctionLetterDto.getSanctionAmount());
+		
+		//double loanTenure = sanctionLetterDto.getLoanTenure();
+	//	Integer tenure=(int) loanTenure;
+		
+		//customerDisbursementDate
+		
+		//cld.setCustomerLoanCompletionDate();
+		
+		
+		disbursementRepository.save(cld);
+		
+		
+		
+		
+		return "Added";
+	}
+	
 
 	@Override
 	public SanctionLetterDto getSanctioLetterBYId(int regcustomerid) {
 		
-		SanctionLetterDto sanctionLetterDto = sanctionLetterRepository.findById(regcustomerid).get();
+		SanctionLetterDto  sanctionLetterDto= sanctionLetterRepository.findByRegcustomeridLike(regcustomerid);
+		
+		System.out.println(sanctionLetterDto.getCibilscore());
 		
 		if(sanctionLetterDto == null)
 			throw new NullPointerException();
 		
 		else 
 			return sanctionLetterDto;
-					
-		
+						
 	}
 
 
 	@Override
 	public CustomerLoanDisbursement getDisbursementLetterBYId(int regcustomerid) {
 		
-		CustomerLoanDisbursement customerLoanDisbursement = disbursementRepository.findById(regcustomerid).get();
-	
+		CustomerLoanDisbursement customerLoanDisbursement = disbursementRepository.findByRegcustomeridLike(regcustomerid);
+		
 		if(customerLoanDisbursement == null)
 			throw new NullPointerException();
 		
@@ -124,6 +177,18 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 
 	}
 
+	@Override
+	public List<CustomerLoanDisbursement> getAllDisbursementLetters() {
+		
+		List<CustomerLoanDisbursement> list = disbursementRepository.findAll();
+		
+		if(list==null)
+			throw new NullPointerException();
+		
+		else 
+			return list;
+	
+	}
 
 	@Override
 	public CustomerLedger generateLedgerByID(int regcustomerid) {
@@ -137,7 +202,7 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 		cl.setSanctionAmount(sanctionLetterDto.getSanctionAmount());
 		CustomerLoanDisbursement customerLoanDisbursement = disbursementRepository.findById(regcustomerid).get();
 		
-		Date customerDisbursementDate = customerLoanDisbursement.getCustomerDisbursementDate();
+		LocalDate customerDisbursementDate = customerLoanDisbursement.getCustomerDisbursementDate();
 		
 		LocalDate paiddt= LocalDate.now();
 		cl.setEmiPaidDate(paiddt);
@@ -150,15 +215,9 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 		ledgerRepository.save(cl);
 		
 		return cl;
-		
-		
 	}
-	 
 
-	  
-	  
-	
-	
+
 	
 	
 }

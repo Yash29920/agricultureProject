@@ -31,6 +31,7 @@ public class OperationHeadServiceImpl implements OperationHeadService {
 	public void customerVerify(CustomerVerify customerVerify) {
 
 		int regcustomerid = customerVerify.getRegcustomerid();
+		
 		RegistrationDetails registrationDetails = regRepository.findById(regcustomerid).get();
 
 		registrationDetails.setCustomerVerify(customerVerify);
