@@ -1,5 +1,6 @@
 package com.financeCompany.agri.project.appService;
 
+import java.util.Date;
 import java.util.List;
 
 import com.financeCompany.agri.project.appDto.CustomerLoanDisbursement;
@@ -12,11 +13,20 @@ public interface AccountHeadService {
 	List<SanctionLetterDto> getAllSanctionLetters();
 
 	String generateDisbursementLetter(DisbursementEntry disbursementEntry);
-
+	
+	//optional
+	String generateDisbursementLetterByID(int regcustomerid);
+	
 	SanctionLetterDto getSanctioLetterBYId(int regcustomerid);
 
 	CustomerLoanDisbursement getDisbursementLetterBYId(int regcustomerid);
 
+	List<CustomerLoanDisbursement> getAllDisbursementLetters();
+	
 	CustomerLedger generateLedgerByID(int regcustomerid);
+
+	
+
+	
 
 }

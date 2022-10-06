@@ -53,6 +53,7 @@ public class CreditManagerController {
 	   return new ResponseEntity(HttpStatus.OK);
 	  }
 	
+	//end pt: http://localhost:9999/creditManager/getSingleDtoEntry/1
 	
 	  @GetMapping(value = "/getSingleDtoEntry/{regcustomerid}",produces ={"application/json"} ) 
 	  public ResponseEntity<CMCustomerResponseDto> getSingleDtoEntry(@PathVariable int regcustomerid) { 
@@ -72,6 +73,8 @@ public class CreditManagerController {
 		  return new ResponseEntity<CMCustomerResponseDto>(singleDtoEntry,HttpStatus.OK);
 	  
 	  }
+	
+	//end pt: http://localhost:9999/creditManager/setCustomerPreference
 	  
 	  @PostMapping("/setCustomerPreference")
 	  public ResponseEntity<String> setCustomerPreference(@RequestBody CMCusRespEMIDto cMCusRespEMIDto)

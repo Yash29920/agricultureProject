@@ -39,12 +39,4 @@ public class GuarantorDetails
 	
 	private String gAddress;
 	
-	private byte[] gSignature;
-	
-	private byte[] gPhoto;
-	
-	private byte[] gBankStatement;
-	
-	
-
 }
