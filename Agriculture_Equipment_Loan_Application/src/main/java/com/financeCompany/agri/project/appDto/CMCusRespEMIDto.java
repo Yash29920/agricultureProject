@@ -13,7 +13,7 @@ public class CMCusRespEMIDto {
 	private double interest;
 	private double totalAmount;
 	private String rateOfInterest;
-	private double loanTenure;
+	private long loanTenure;
 	private double requiredLoanAmount;
 	
 	

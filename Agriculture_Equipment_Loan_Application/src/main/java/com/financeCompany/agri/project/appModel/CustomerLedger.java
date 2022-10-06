@@ -22,19 +22,26 @@ public class CustomerLedger {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int ledgerid;
 	private int regcustomerid;
+	
+	private String customerName;
 	private LocalDate emiDueDate;
 	private LocalDate emiPaidDate;
-	private double paidEmiAmount;
-	private double monthlyEmi;
 	private LocalDate nextEmiDate;
+	private LocalDate loanCompletionDate;
 	
 	private double sanctionAmount;
-	private double totalPaidAmount;
+	private double paidEmiAmount;
+	private double monthlyEmi;
+	
 	
 	private double remainingAmount;
 	private String previousAmountStatus;
 	private String CurrentMonthEmiStatus;
 	
+	private double interest;
+	private String rateOfInterest;
+	private double loanTenure;
+
 	
 	
 }
