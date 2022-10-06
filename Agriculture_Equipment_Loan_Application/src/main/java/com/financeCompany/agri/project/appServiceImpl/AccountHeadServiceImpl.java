@@ -196,21 +196,42 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 		RegistrationDetails registrationDetails = regRepository.findById(regcustomerid).get();
 		SanctionLetterDto sanctionLetterDto = sanctionLetterRepository.findById(regcustomerid).get();
 		CustomerLedger cl =new CustomerLedger();
+		
 		cl.setRegcustomerid(regcustomerid);
+		
+		cl.setCustomerName(registrationDetails.getRegFirstName()+" "+registrationDetails.getRegMiddleName()+" "+registrationDetails.getRegLastName());
+		
 		cl.setMonthlyEmi(sanctionLetterDto.getSanctionAmount());
 		
+		cl.setMonthlyEmi(sanctionLetterDto.getMonthlyEmi());
+		
+		cl.setInterest(sanctionLetterDto.getInterest());
+		
+		cl.setRateOfInterest(sanctionLetterDto.getRateOfInterest());
+		
 		cl.setSanctionAmount(sanctionLetterDto.getSanctionAmount());
+		
+		cl.setLoanTenure(sanctionLetterDto.getLoanTenure());
+		
 		CustomerLoanDisbursement customerLoanDisbursement = disbursementRepository.findById(regcustomerid).get();
 		
 		LocalDate customerDisbursementDate = customerLoanDisbursement.getCustomerDisbursementDate();
 		
-		LocalDate paiddt= LocalDate.now();
-		cl.setEmiPaidDate(paiddt);
+		cl.setEmiPaidDate(customerDisbursementDate);
 		
-		//LocalDate emiDuedt= emiDuedt.with()
+		cl.setEmiDueDate(customerDisbursementDate.plusDays(10));
 		
+		cl.setNextEmiDate(customerDisbursementDate.plusMonths(1));
 		
-		//cl.setEmiDueDate(emiDuedt);
+		cl.setLoanCompletionDate(customerDisbursementDate.plusMonths(sanctionLetterDto.getLoanTenure()));
+		
+		cl.setCurrentMonthEmiStatus("unpaid");
+		
+		double remainingamt=sanctionLetterDto.getSanctionAmount()-sanctionLetterDto.getMonthlyEmi();
+		
+		cl.setRemainingAmount(remainingamt);
+		
+		cl.setPaidEmiAmount(sanctionLetterDto.getSanctionAmount()-remainingamt);
 		
 		ledgerRepository.save(cl);
 		

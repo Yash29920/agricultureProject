@@ -41,7 +41,7 @@ public class SanctionLetterDto {
 
 	private String rateOfInterest;
 
-	private double loanTenure;
+	private long loanTenure;
 
 	private double monthlyEmi;
 

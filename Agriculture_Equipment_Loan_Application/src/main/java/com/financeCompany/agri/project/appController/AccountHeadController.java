@@ -17,6 +17,7 @@ import com.financeCompany.agri.project.appDto.CustomerLoanDisbursement;
 import com.financeCompany.agri.project.appDto.SanctionLetterDto;
 import com.financeCompany.agri.project.appModel.CustomerLedger;
 import com.financeCompany.agri.project.appModel.DisbursementEntry;
+import com.financeCompany.agri.project.appRepository.LedgerRepository;
 import com.financeCompany.agri.project.appService.AccountHeadService;
 
 @RestController
@@ -26,6 +27,10 @@ public class AccountHeadController {
 	
 	@Autowired
 	private AccountHeadService accountHeadService;
+	
+	@Autowired
+	private LedgerRepository lrepo;
+	
 	
 	//end pt: http://localhost:9999/accountHeadController/getAllSanctionLetters
 	
@@ -104,15 +109,18 @@ public class AccountHeadController {
 	//end pt: http://localhost:9999/accountHeadController/generateLedgerByID/1
 		
 	  @GetMapping("/generateLedgerByID/{regcustomerid}") 
-	  public ResponseEntity<CustomerLedger> generateLedgerByID(int regcustomerid){
+	  public ResponseEntity<CustomerLedger> generateLedgerByID(int regcustomerid)
+	  {
 	  
 		  CustomerLedger customerLedger = accountHeadService.generateLedgerByID(regcustomerid);
 		  
-	  return new ResponseEntity<CustomerLedger>(customerLedger,HttpStatus.OK); }
+		  lrepo.save(customerLedger);
+		  
+	      return new ResponseEntity<CustomerLedger>(customerLedger,HttpStatus.OK); 
+	  }
 	 
 	
-	
-	  
+
 	  
 	  
 	
