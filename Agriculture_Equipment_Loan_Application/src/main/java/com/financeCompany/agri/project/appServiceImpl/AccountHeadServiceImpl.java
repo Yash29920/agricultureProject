@@ -47,6 +47,8 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 	  }
 
 
+
+	  
 	@Override
 	public String generateDisbursementLetter(DisbursementEntry disbursementEntry) {
 		
@@ -190,6 +192,12 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 	
 	}
 
+	
+	static int i=1;
+	static LocalDate updateDate;
+	static double monthlyEmi;
+	
+	
 	@Override
 	public CustomerLedger generateLedgerByID(int regcustomerid) {
 		
@@ -221,11 +229,12 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 		
 		cl.setEmiDueDate(customerDisbursementDate.plusDays(10));
 		
-		cl.setNextEmiDate(customerDisbursementDate.plusMonths(1));
+		cl.setNextEmiDate(customerDisbursementDate.plusMonths(i));
 		
 		cl.setLoanCompletionDate(customerDisbursementDate.plusMonths(sanctionLetterDto.getLoanTenure()));
 		
 		cl.setCurrentMonthEmiStatus("unpaid");
+		
 		
 		double remainingamt=sanctionLetterDto.getSanctionAmount()-sanctionLetterDto.getMonthlyEmi();
 		
@@ -234,6 +243,28 @@ public class AccountHeadServiceImpl implements AccountHeadService{
 		cl.setPaidEmiAmount(sanctionLetterDto.getSanctionAmount()-remainingamt);
 		
 		ledgerRepository.save(cl);
+		
+	
+		
+		while(i<sanctionLetterDto.getLoanTenure())
+		{
+			updateDate=customerDisbursementDate.plusMonths(i);
+			i++;
+		}
+		
+///////////////////////////////////////////////////////////////////////
+		
+		CustomerLedger customerLedger = ledgerRepository.findByRegcustomerid(regcustomerid);
+		while(i<sanctionLetterDto.getLoanTenure())
+		{
+			if(customerLedger.getEmiPaidDate().compareTo(customerLedger.getEmiDueDate())>10)
+			{
+				double monthlyEmi2 = customerLedger.getMonthlyEmi();
+				monthlyEmi=monthlyEmi2+monthlyEmi2*0.02;
+				cl.setMonthlyEmi(monthlyEmi);
+			}
+		}
+		
 		
 		return cl;
 	}
