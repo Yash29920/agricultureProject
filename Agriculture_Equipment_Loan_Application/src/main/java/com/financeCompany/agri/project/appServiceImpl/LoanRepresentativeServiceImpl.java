@@ -47,10 +47,11 @@ public class LoanRepresentativeServiceImpl implements LoanRepresentativeService{
 		  
 		  repository.save(enqForm);
 		  return "Data Added";
-		}
+	}
 		
-		else
+		else {
 			throw new NoSuchElementException();
+		}
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

@@ -48,11 +48,11 @@ public class AppController
 		 return new ResponseEntity<List<EnquiryDetails>>(list,HttpStatus.OK);
 	}
 	
-	@GetMapping( value = "/getSingleEnquiry",produces = {"application/json"})
-	public Object getSingleEnquiry(@PathVariable int enquiryid)
+	@GetMapping( value = "/getSingleEnquiry/{enquiryid}",produces = {"application/json"})
+	public ResponseEntity<EnquiryDetails> getSingleEnquiry(@PathVariable int enquiryid)
 	{
-		Object enq= service.getSingleEnquiry(enquiryid);
-		return new ResponseEntity<Object>(enq,HttpStatus.OK);
+		EnquiryDetails enquiry = service.getSingleEnquiry(enquiryid);
+		return new ResponseEntity<EnquiryDetails>(enquiry,HttpStatus.OK);
 		
 	}
 }

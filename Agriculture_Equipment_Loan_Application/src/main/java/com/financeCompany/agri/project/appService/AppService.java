@@ -14,5 +14,5 @@ public interface AppService
 
 	List<EnquiryDetails> getAllEnquiry();
 
-	Object getSingleEnquiry(int enquiryid);
+	EnquiryDetails getSingleEnquiry(int enquiryid);
 }

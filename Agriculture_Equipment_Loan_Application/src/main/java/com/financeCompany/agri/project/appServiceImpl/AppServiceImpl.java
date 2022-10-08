@@ -24,12 +24,13 @@ public class AppServiceImpl implements AppService
 	
 	public String addEnquiry(EnquiryDetails enquiryDetails)
 	{
-		EnquiryDetails enquiryDetails1 = repository.save(enquiryDetails);
-		if(enquiryDetails1.getMobileNo()!=0&&enquiryDetails1.getAadharCardNo()!=0)
-		{
-			return "Added into DB"; 
-		} 
-		 throw new NullPointerException();	 
+		if(enquiryDetails.getAadharCardNo()==0 && enquiryDetails.getMobileNo()==0 && enquiryDetails.getPancardNo()==null ) {
+			throw new NullPointerException();
+		}
+		else {
+			repository.save(enquiryDetails);
+			return "Data Added in DB";
+		}
 	}
 		
 	@Override
@@ -45,7 +46,7 @@ public class AppServiceImpl implements AppService
 	}
 
 	@Override
-	public Object getSingleEnquiry(int enquiryid)
+	public EnquiryDetails getSingleEnquiry(int enquiryid)
 	{
 		if(repository.existsById(enquiryid))
 	{	 EnquiryDetails enquiryDetails = repository.findById(enquiryid).get();

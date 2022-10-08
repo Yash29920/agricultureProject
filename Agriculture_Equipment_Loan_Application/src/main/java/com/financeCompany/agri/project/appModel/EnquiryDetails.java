@@ -27,11 +27,11 @@ public class EnquiryDetails
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int enquiryid;
-	
+	@NotNull
 	private String firstName;
-	
+	@NotNull
 	private String middleName;
-	
+	@NotNull
 	private String lastName;
 	
 	private Date dateOfBirth;
