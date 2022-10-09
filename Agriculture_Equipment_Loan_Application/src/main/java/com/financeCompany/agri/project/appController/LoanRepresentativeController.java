@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financeCompany.agri.project.appDto.EnquirySubsidyOfferDto;
+import com.financeCompany.agri.project.appModel.CustomerMailSend;
 import com.financeCompany.agri.project.appModel.EmiCalculation;
 import com.financeCompany.agri.project.appModel.EnquiryEmiCalculation;
 import com.financeCompany.agri.project.appModel.SubsidyOffer;
@@ -48,6 +49,16 @@ public class LoanRepresentativeController {
 		  System.out.println(enquirySubsidyOfferDto); 
 		 String msg = lrservice.provideOfferToEnquiry(enquirySubsidyOfferDto);
 	   return new ResponseEntity<String>(msg,HttpStatus.OK);
+	  }
+	
+	/////////////////////////////////////////////////////////////////////////////////
+	
+	@PostMapping("/sendMailToCustomer")
+	public ResponseEntity <String >sendMailToCustomer(@RequestBody CustomerMailSend mailInfo) 
+	  { 
+		  System.out.println(mailInfo); 
+		 String msg = lrservice.sendMailToCustomer(mailInfo);
+	   return new ResponseEntity<String>(msg,HttpStatus.CREATED);
 	  }
 	
 	/////////////////////////////////////////////////////////////////////////////////

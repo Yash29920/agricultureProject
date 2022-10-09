@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.metrics.export.wavefront.WavefrontProperties.Sender;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.financeCompany.agri.project.appDto.EnquirySubsidyOfferDto;
-
+import com.financeCompany.agri.project.appModel.CustomerMailSend;
 import com.financeCompany.agri.project.appModel.EnquiryDetails;
 import com.financeCompany.agri.project.appModel.EnquiryEmiCalculation;
 
@@ -21,6 +24,8 @@ public class LoanRepresentativeServiceImpl implements LoanRepresentativeService{
 	
 	@Autowired
 	private AppRepository repository;
+	@Autowired
+	private JavaMailSender sender;
 	
 
 	
@@ -47,10 +52,11 @@ public class LoanRepresentativeServiceImpl implements LoanRepresentativeService{
 		  
 		  repository.save(enqForm);
 		  return "Data Added";
-		}
+	}
 		
-		else
+		else {
 			throw new NoSuchElementException();
+		}
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -86,6 +92,24 @@ public class LoanRepresentativeServiceImpl implements LoanRepresentativeService{
 			throw new NoSuchElementException();
 		
 	}
-
 	
+	
+//////////////////////////////////////////////////////////////////////////////////
+	
+	
+
+	@Override
+	public String sendMailToCustomer(CustomerMailSend mailInfo) {
+
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setFrom(mailInfo.getFrom());
+			message.setTo(mailInfo.getTo());
+			message.setSubject(mailInfo.getSub());
+			message.setText(mailInfo.getMsg());
+			
+			sender.send(message);
+			System.out.println("Email send Success");
+			return "Email Send To: "+mailInfo.getTo();
+		}
+
 }
